@@ -29,6 +29,10 @@ class Service {
 
     this.items.push(novoItem);
   }
+  
+  deleteItem(id: string): void {
+    this.items = this.items.filter((item) => item.id !== id);
+  }
 }
 
 export const ItemService = new Service();

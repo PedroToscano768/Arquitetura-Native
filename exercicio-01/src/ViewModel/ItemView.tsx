@@ -9,7 +9,8 @@ export const ItemView = () => {
     nomeDigitado, 
     setNomeDigitado, 
     mensagemErro, 
-    handleAdicionarItem 
+    handleAdicionarItem,
+    handleRemoverItem 
   } = ItemViewModel();
 
   return (
@@ -32,7 +33,8 @@ export const ItemView = () => {
         keyExtractor={(item: Item) => item.id}
         renderItem={({ item }: {item: Item}) => (
           <View style={styles.itemCard}>
-            <Text>{item.nome}</Text>
+            <Text style={styles.itemText}>{item.nome}</Text>
+            <Button title="Excluir" color="#ff4444" onPress={() => handleRemoverItem(item.id)} />
           </View>
         )}
         style={styles.list}
@@ -47,5 +49,16 @@ const styles = StyleSheet.create({
   input: { borderWidth: 1, borderColor: '#ccc', padding: 10, borderRadius: 5, marginBottom: 10 },
   errorText: { color: 'red', marginBottom: 10 },
   list: { marginTop: 20 },
-  itemCard: { padding: 15, backgroundColor: '#f9f9f9', borderBottomWidth: 1, borderColor: '#eee' }
+  itemCard: { 
+    padding: 15, 
+    backgroundColor: '#f9f9f9', 
+    borderBottomWidth: 1, 
+    borderColor: '#eee',
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center'
+  },
+  itemText: {
+    fontSize: 16,
+  },
 });

@@ -1,13 +1,10 @@
 import { useState } from 'react';
 import { ItemService } from '../Services/ItemService';
 
-
 export const ItemViewModel = () => {
-
   const [items, setItems] = useState(ItemService.getAllItems());
   const [nomeDigitado, setNomeDigitado] = useState('');
   const [mensagemErro, setMensagemErro] = useState('');
-
 
   const handleAdicionarItem = () => {
     setMensagemErro(''); 
@@ -22,11 +19,17 @@ export const ItemViewModel = () => {
     }
   };
 
+  const handleRemoverItem = (id: string) => {
+    ItemService.deleteItem(id);
+    setItems(ItemService.getAllItems());
+  };
+
   return {
     items,
     nomeDigitado,
     setNomeDigitado,
     mensagemErro,
     handleAdicionarItem,
+    handleRemoverItem,
   };
 };
