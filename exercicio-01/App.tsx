@@ -1,19 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import { ItemView } from './src/ViewModel/ItemView'; 
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { ItemView } from './src/ViewModel/ItemView';
+import { FormView } from './src/ViewModel/FormView';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <ItemView />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Lista">
+        <Stack.Screen name="Lista" component={ItemView} />
+        <Stack.Screen name="Formulario" component={FormView} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});

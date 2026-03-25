@@ -8,20 +8,20 @@ export const ItemViewModel = () => {
 
   const handleAdicionarItem = () => {
     setMensagemErro(''); 
-
     try {
       ItemService.addItem(nomeDigitado);
-      
-      setItems(ItemService.getAllItems());
+      setItems([...ItemService.getAllItems()]); 
       setNomeDigitado('');
+      return true;
     } catch (error: any) {
       setMensagemErro(error.message);
+      return false;
     }
   };
 
   const handleRemoverItem = (id: string) => {
     ItemService.deleteItem(id);
-    setItems(ItemService.getAllItems());
+    setItems([...ItemService.getAllItems()]);
   };
 
   return {
@@ -31,5 +31,6 @@ export const ItemViewModel = () => {
     mensagemErro,
     handleAdicionarItem,
     handleRemoverItem,
+    refreshItems: () => setItems([...ItemService.getAllItems()])
   };
 };
